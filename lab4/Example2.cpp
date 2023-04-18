@@ -5,20 +5,20 @@
 #include <iostream>
 using namespace std;
 
-void main()
+int main()
 {
-  char str1[] = "querty", str2[] = "1234567890";
+  char str1[] = "qwerty", str2[] = "1234567890";
 
   // использование функций длины строки
-  cout << "длина str1=" << dlina1(str1) << ", str2";
-  cout << dlina1(str2) << endl;
-  cout << "длина str1=" << dlina2(str2) << ", str2=";
-  cout << dlina2(str2) << endl;
-  cout << "длина str1=" << dlina3(str1) << ", str2=";
-  cout << dlina3(str2) << endl;
+  cout << "длина str1=" << long1(str1) << ", str2=";
+  cout << long1(str2) << endl;
+  cout << "длина str1=" << long2(str2) << ", str2=";
+  cout << long2(str2) << endl;
+  cout << "длина str1=" << long3(str1) << ", str2=";
+  cout << long3(str2) << endl;
 
-  // вызов kopir(char*, char*)
-  kopir(str1, str2);
+  // вызов copy(char*, char*)
+  copy(str1, str2);
   cout << "результат копирования: str1=" << str1;
   cout << ", str2=" << str2 << endl;
 
@@ -28,7 +28,7 @@ void main()
   sravn(str1, str2);
 
   // вызов kontact(char*, char*);
-  konkat(str1, str2);
+  concatenation(str1, str2);
   cout << "результат сцепления: str1=" << str1;
   cout << ", str2=" << str2 << endl;
 
@@ -75,6 +75,43 @@ void copy(char *str1, char *str2)
   while (*str1 != '\0')
   { // в цикле копируем символ из 1 строки во 2, пока не дойдем до нулевого символа
     // затем добавляем нулевой символ в конец второй строки
-    *str2
+    *str2 = *str1;
+    str1++;
+    str2++;
   }
+  *str2 = '\0';
+}
+
+// функция сравнения строк
+void sravn(char *str1, char *str2)
+{
+  while (*str1 == *str2)
+  {
+    if (*str1 == '\0')
+    {
+      cout << "строки равны" << endl;
+      return;
+    }
+    str1++;
+    str2++;
+  }
+  cout << "Строки не равны" << endl;
+}
+
+//  функция конкатенации строк
+// сравниваем символы в двух строках, пока не встретим отличающиеся
+// либо нулевой символ
+void concatenation(char *str1, char *str2)
+{
+  while (*str1 != '\0')
+  {
+    str1++;
+  }
+  while (*str2 != '\0')
+  {
+    *str1 = *str2;
+    str1++;
+    str2++;
+  }
+  *str1 = '\0';
 }
